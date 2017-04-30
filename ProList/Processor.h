@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <fstream>
 struct Processor
 {
 	/*using char: because of strcpy(), I'd fucked up to use "std::string" and copy it.*/ 
@@ -30,6 +31,8 @@ class ProcessorList
 private:
 	Processor *Head_of_List;
 	int Counter;
+	std::ofstream recordInFile;
+	std::ifstream readFromFile;
 public:
 	//Method counter
 	int CounUp();
@@ -48,6 +51,9 @@ public:
 
 	//Take the element from a List
 	void TakeAnyElement(const int N);
+	//Work with a file 
+	void recordDataInFile(const Processor& newProcessor);
+	void readDataFromFile();
 };
 
 

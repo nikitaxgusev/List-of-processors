@@ -46,6 +46,47 @@ void ProcessorList::TakeAnyElement(const int N)
 		std::cout << std::endl;
 	}
 }
+void ProcessorList::recordDataInFile(const Processor & newProcessor)
+{
+	char fileName[20];
+	
+	Processor *timePr = Head_of_List;
+
+	std::cout << "Name of File: ";
+	std::cin >> fileName;
+
+	recordInFile.open(fileName, std::ios_base::app);
+	if (!recordInFile)
+	{
+		std::cerr << "Error: can't open a file" <<std::endl;
+		exit(-1);
+	}
+	recordInFile << "Name of The Processor: " << timePr->Name_Processor << std::endl;
+	recordInFile << "The Model: " << timePr->Model << std::endl;
+	recordInFile << "Frequency: " << timePr->Freaq << std::endl;
+	recordInFile << "Quantity of cores: " << timePr->Core << std::endl;
+	recordInFile << std::endl;
+}
+void ProcessorList::readDataFromFile()
+{
+	std::string line;
+	char fileName[20];
+	//Processor *timePr = Head_of_List;
+
+	std::cout << "Name of File: ";
+	std::cin >> fileName;
+
+	readFromFile.open(fileName, std::ios_base::out);
+	if (!readFromFile)
+	{
+		std::cerr << "Error: can't open a file" << std::endl;
+		exit(-1);
+	}
+	while (std::getline(readFromFile, line))
+	{
+		std::cout << line << std::endl;
+	}
+}
 ProcessorList::~ProcessorList()
 {
 	//deleting my list after work 
@@ -55,6 +96,8 @@ ProcessorList::~ProcessorList()
 		delete Head_of_List;
 		Head_of_List = timeProc;
 	}
+	recordInFile.close();//close a file for recording
+	readFromFile.close();//close a file for reading
 	std::cout << "Checking destructor......." << std::endl;
 }
 

@@ -15,11 +15,15 @@ int main()
 	{
 		proc.InputData();
 		lst.AddElement(proc);
+		lst.recordDataInFile(proc);
 	}
 	std::cout << std::endl;
+
+	std::cout << "Reading";
+	lst.readDataFromFile();
 	
-	lst.show();
-	std::cout<< "You recorded [ "<<lst.CounUp()<<" ] processors"<<std::endl;
+	//lst.show();
+	//std::cout<< "You recorded [ "<<lst.CounUp()<<" ] processors"<<std::endl;
 	//lst.TakeAnyElement(1);
 	system("pause");
 	return 0;
